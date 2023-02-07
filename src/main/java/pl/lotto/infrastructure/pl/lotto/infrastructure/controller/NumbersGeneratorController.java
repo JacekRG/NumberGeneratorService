@@ -17,7 +17,6 @@ public class NumbersGeneratorController {
 
     LuckyNumbersGeneratorFacade luckyNumbersGeneratorFacade;
 
-
     @GetMapping
     public ResponseEntity<LuckyNumbersDto> retrieveLuckyNumbersForDate(@Valid @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
         return ResponseEntity.ok(luckyNumbersGeneratorFacade.retrieve(date));
