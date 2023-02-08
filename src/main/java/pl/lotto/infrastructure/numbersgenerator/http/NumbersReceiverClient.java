@@ -1,4 +1,4 @@
-package pl.lotto.infrastructure.pl.lotto.infrastructure.numbersgenerator;
+package pl.lotto.infrastructure.numbersgenerator.http;
 
 import java.time.LocalDateTime;
 

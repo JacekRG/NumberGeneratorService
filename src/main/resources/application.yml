@@ -1,0 +1,8 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+lotto:
+  checker:
+    lotteryRunOccurrence: "*/10 * * * * *"
+server:
+  port: 8087
