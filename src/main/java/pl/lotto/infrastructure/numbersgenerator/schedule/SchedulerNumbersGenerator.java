@@ -3,33 +3,39 @@ package pl.lotto.infrastructure.numbersgenerator.schedule;
 
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.Level;
+import org.springframework.cglib.core.Local;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import pl.lotto.infrastructure.numbersgenerator.http.NumbersReceiverClient;
-import pl.lotto.numbersgenerator.LuckyNumbersGeneratorFacade;
+import pl.lotto.infrastructure.numbersgenerator.http.NumbersReceiverHttpClientImpl;
+import pl.lotto.numbersgenerator.RandomNumbersGenerator;
 
 import java.time.LocalDateTime;
+
 
 @Log4j2
 @Component
 public class SchedulerNumbersGenerator {
 
-    private final LuckyNumbersGeneratorFacade luckyNumbersGeneratorFacade;
+    private final NumbersReceiverHttpClientImpl numbersReceiverHttpClientImpl;
+    private final RandomNumbersGenerator  randomNumbersGenerator;
 
-    private final NumbersReceiverClient numbersReceiverClient;
+    private final NumbersReceiverHttpClientImpl  numbersReceiverHttpClient;
 
-    public SchedulerNumbersGenerator(LuckyNumbersGeneratorFacade luckyNumbersGeneratorFacade, NumbersReceiverClient numbersReceiverClient) {
-        this.luckyNumbersGeneratorFacade = luckyNumbersGeneratorFacade;
-        this.numbersReceiverClient = numbersReceiverClient;
+    public SchedulerNumbersGenerator(NumbersReceiverHttpClientImpl numbersReceiverHttpClientImpl, RandomNumbersGenerator  randomNumbersGenerator, NumbersReceiverHttpClientImpl numbersReceiverHttpClient) {
+        this.numbersReceiverHttpClientImpl = numbersReceiverHttpClientImpl;
+        this.randomNumbersGenerator = randomNumbersGenerator;
+        this.numbersReceiverHttpClient = numbersReceiverHttpClient;
     }
 
     @Scheduled(cron = "${lotto.checker.lotteryRunOccurrence}")
     public void f() {
-
+        int counter = 0;
+        counter++;
+        String exemplaryStringDate = "2022-02-07T12:00:00";
+        LocalDateTime exemplaryDate = LocalDateTime.parse(exemplaryStringDate).plusDays(counter);
         log.log(Level.INFO, "scheduler started");
+//        randomNumbersGenerator.randomSixNumbers();
+        numbersReceiverHttpClient.generateLuckyNumbers(exemplaryDate);
 
-        System.out.println(LocalDateTime.now());
-        LocalDateTime drawDate = numbersReceiverClient.retrieveNextDrawDate();
-        luckyNumbersGeneratorFacade.generateLuckyNumbers(drawDate);
     }
 }
