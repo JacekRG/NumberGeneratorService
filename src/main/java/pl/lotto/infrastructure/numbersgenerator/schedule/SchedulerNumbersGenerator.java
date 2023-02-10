@@ -29,13 +29,14 @@ public class SchedulerNumbersGenerator {
 
     @Scheduled(cron = "${lotto.checker.lotteryRunOccurrence}")
     public void f() {
-        int counter = 0;
-        counter++;
-        String exemplaryStringDate = "2022-02-07T12:00:00";
-        LocalDateTime exemplaryDate = LocalDateTime.parse(exemplaryStringDate).plusDays(counter);
+        Counter counter = new Counter();
+        counter.counterIncrease();
+        System.out.println("Obecny stan countera: " + Counter.counter);
+        String exemplaryStringDate = "2022-02-07T12:00";
+        LocalDateTime exemplaryDate = LocalDateTime.parse(exemplaryStringDate).plusDays(Counter.counter);
         log.log(Level.INFO, "scheduler started");
-//        randomNumbersGenerator.randomSixNumbers();
+//    randomNumbersGenerator.randomSixNumbers();
         numbersReceiverHttpClient.generateLuckyNumbers(exemplaryDate);
-
     }
+
 }

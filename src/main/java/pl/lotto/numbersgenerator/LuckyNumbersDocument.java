@@ -12,6 +12,6 @@ public record LuckyNumbersDocument(
 
         Collection<Integer> numbers,
         @Id
-        LocalDateTime drawDate
+        String drawDate
 ) {
 }

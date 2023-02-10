@@ -7,6 +7,6 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Repository
-public interface LuckyNumbersRepository extends MongoRepository<LuckyNumbersDocument, LocalDateTime> {
-    Optional<LuckyNumbersDocument> findByDrawDate(LocalDateTime date);
+public interface LuckyNumbersRepository extends MongoRepository<LuckyNumbersDocument, String> {
+    Optional<LuckyNumbersDocument> findByDrawDate(String date);
 }
