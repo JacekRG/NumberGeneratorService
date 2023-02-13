@@ -3,7 +3,7 @@ spring:
     allow-bean-definition-overriding: true
   data:
     mongodb:
-      uri: mongodb://root:example@localhost:27017/admin  # mongodb://[username:password@]host1[:port1]/[database-name]
+      uri: mongodb://admin:admin@mongo_db/lotto-web?authSource=admin  # mongodb://[username:password@]host1[:port1]/[database-name]
 
 
 
