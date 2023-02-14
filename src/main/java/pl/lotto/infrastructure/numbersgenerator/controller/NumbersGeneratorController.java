@@ -22,7 +22,7 @@ public class NumbersGeneratorController {
 
     @GetMapping
     public ResponseEntity<LuckyNumbersDto> retrieveLuckyNumbersForDate(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
-        LuckyNumbersDto dto = numbersReceiverHttpClientImpl.retrieveNextDrawDate(date);
+        LuckyNumbersDto dto = numbersReceiverHttpClientImpl.retrieveNextDrawDate(date); //facada-wyjecie z bazy
         return ResponseEntity.ok(dto);
     }
 }

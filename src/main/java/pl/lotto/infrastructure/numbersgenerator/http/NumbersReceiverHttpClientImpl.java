@@ -38,20 +38,23 @@ public class NumbersReceiverHttpClientImpl implements NumbersReceiverClient {
         if (foundByDate.isEmpty()) {
             LuckyNumbersDto numbersDto = new LuckyNumbersDto(generator.randomSixNumbers(), drawDate);
             luckyNumbersRepository.save(new LuckyNumbersDocument(numbersDto.winningNumbers(), drawDate.toString()));
-            System.out.println("*********Nie bylo tego na te date, ale wygenerowalem: " + numbersDto +" ++++++++++");
+            System.out.println("*********   Nie bylo tego na te date, ale wygenerowalem: " + numbersDto +"   *********");
             return numbersDto;
         }
         LuckyNumbersDocument luckyNumbersDocument = foundByDate.get();
-        System.out.println("Bylo juz w bazie : " + luckyNumbersDocument);
+        System.out.println("---------   Bylo juz w bazie : " + luckyNumbersDocument + " ---------");
         return new LuckyNumbersDto(luckyNumbersDocument.numbers(), drawDate);
     }
 
     @Override
     public LuckyNumbersDto retrieveNextDrawDate(LocalDateTime drawDate) {
+        System.out.println("Sprawdzam wygrane liczny na dzien : " + drawDate);
         Optional<LuckyNumbersDocument> foundByDate = luckyNumbersRepository.findByDrawDate(drawDate.toString());
         if (foundByDate.isEmpty()) {
+//            luckyNumbersRepository.save(new LuckyNumbersDocument(null, drawDate.toString()));
             return new LuckyNumbersDto(emptyList(), drawDate);
         }
+        luckyNumbersRepository.save(new LuckyNumbersDocument(foundByDate.get().numbers(), drawDate.toString()));
         return new LuckyNumbersDto(foundByDate.get().numbers(), drawDate);
     }
 //    @Override

@@ -5,9 +5,8 @@ db.getSiblingDB("admin").createUser(
         roles: [
             {
                 role: "readWrite",
-                db: "lotto-web"
+                db: "lottogen"
             }
         ]
     }
 )
-
