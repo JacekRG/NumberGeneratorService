@@ -1,0 +1,7 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+wiremocktest.host = localhost
+wiremocktest.port = 8001
+

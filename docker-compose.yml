@@ -30,12 +30,54 @@ services:
 
   numgen:
     build: .
-    #    image: 054968576252.dkr.ecr.eu-central-1.amazonaws.com/lotto:latest
+    #    image: 672727997648.dkr.ecr.eu-central-1.amazonaws.com/numgen:latest
     restart: always
     ports:
-      - 8000:8000
+      - 8002:8087
     environment:
       MONGO_USER: admin
       MONGO_PASSWORD: admin
       MONGO_HOST: mongonumgen
       MONGO_PORT: 27017
+
+networks:
+  default:
+    external:
+      name: my-network
+
+#  mongo-le:
+#    image: mongo:4.0.1
+#    restart: always
+#    ports:
+#      - 27018:27017
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: root
+#      MONGO_INITDB_ROOT_PASSWORD: example
+#      MONGO_INITDB_ROOT_DATABASE: admin
+#    volumes:
+#      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+#
+#
+#  mongo-express-le:
+#    image: mongo-express
+#    restart: always  #restart the container regardless of the exit status
+#    depends_on:
+#      - mongo-le
+#    ports:
+#      - 8086:8081  # port forwarding
+#    environment:
+#      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+#      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+#      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/  # mongodb://{mongo-image-username}:{mongo-image-password}@{mongo-image-name}:{port}
+
+#  numexcellent-le:
+#    build: .
+#    #    image: 672727997648.dkr.ecr.eu-central-1.amazonaws.com/lotto:latest
+#    restart: always
+#    ports:
+#      - 8002:8000
+#    environment:
+#      MONGO_USER: admin
+#      MONGO_PASSWORD: admin
+#      MONGO_HOST: mongo
+#      MONGO_PORT: 27018

@@ -3,11 +3,14 @@ spring:
     allow-bean-definition-overriding: true
   data:
     mongodb:
-#      uri: mongodb://admin:admin@localhost:27017/lottogen?authSource=admin # mongodb://[username:password@]host1[:port1]/[database-name]
-      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/lottogen?authSource=admin
+      uri: mongodb://admin:admin@mongonumgen:27017/lottogen?authSource=admin # mongodb://[username:password@]host1[:port1]/[database-name]
+#      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/lottogen?authSource=admin
 
 #      uri: mongodb://admin:admin@mongo_db/lotto-web?authSource=admin
 
+receiverFacadeFacade:
+    url: http://numexcellent
+    port: 8001
 
 lotto:
   checker:
