@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  mongo:
+  mongonumgen:
     image: mongo:4.0.1
     restart: always
     container_name: mongonumgen
@@ -15,11 +15,11 @@ services:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
 
 
-  mongo-express:
+  mongonumgenexpress:
     image: mongo-express
     restart: always  #restart the container regardless of the exit status
     depends_on:
-      - mongo
+      - mongonumgen
     container_name: mongonumgenexpress
     ports:
       - 8089:8081  # port forwarding
@@ -40,10 +40,10 @@ services:
       MONGO_HOST: mongonumgen
       MONGO_PORT: 27017
 
-networks:
-  default:
-    external:
-      name: my-network
+#networks:
+#  default:
+#    external:
+#      name: my-network
 
 #  mongo-le:
 #    image: mongo:4.0.1
