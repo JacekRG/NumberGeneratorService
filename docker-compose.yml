@@ -29,8 +29,8 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongonumgen:27017/  # mongodb://{mongo-image-username}:{mongo-image-password}@{mongo-image-name}:{port}
 
   numgen:
-    build: .
-    #    image: 672727997648.dkr.ecr.eu-central-1.amazonaws.com/numgen:latest
+    #    build: .
+    image: 672727997648.dkr.ecr.eu-central-1.amazonaws.com/numgen:latest
     restart: always
     ports:
       - 8002:8087
